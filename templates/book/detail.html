@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+{% load mptt_tags %}
+
+{% block title %}
+    Detail
+{% endblock %}
+
+{% block content %}
+    <h3>{{ blog.title }}</h3>
+    <span class="fw-bold"><i class="bi bi-person"></i> {{ book.author }}</span>
+    &nbsp;
+    |
+    &nbsp;
+    <i class="bi bi-tags-fill"></i>
+    <a href="{% url 'home_filter' blog.type %}"><span
+            class="badge rounded-pill text-bg-secondary"> #{{ blog.type }}</span></a>
+    <p class="my-5">
+        {{ blog.content|safe }}
+    </p>
+    <p class="float-end">{{ blog.content|wordcount }} words</p>
+    <p class="my-2"><i class="bi bi-calendar2-date"></i> {{ blog.created_at|date:"D d M Y ⏰ f A" }} </p>
+
+
+
+{% endblock %}
