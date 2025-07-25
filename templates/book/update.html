@@ -6,9 +6,6 @@
     Update
 {% endblock %}
 
-{% block header %}
-    {{ form.media }} # Required for styling/js to make ckeditor5 work
-{% endblock %}
 
 
 {% block content %}
@@ -19,7 +16,7 @@
             </p>
         </div>
         <div class="card-body">
-            <form method="POST" action="{% url 'update' blog.id %}" enctype="multipart/form-data">
+            <form method="POST" action="{% url 'delete' book_id %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form|crispy }}
                 <button type="submit" class="btn btn-primary">Update</button>

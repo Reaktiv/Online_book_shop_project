@@ -86,7 +86,12 @@ def update(request, book_id):
             return redirect('home')
     else:
         form = BookForm(instance=book)
-    return render(request, 'book/update.html', {'form': form, 'blog': book})
+    context = {
+        'form': form,
+        'book': book,
+        'book_id': book_id
+    }
+    return render(request, 'book/update.html', context=context)
 
 
 def delete(request, book_id):
