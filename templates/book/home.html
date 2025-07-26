@@ -13,28 +13,29 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container mt-4">
+    <div class="container mt-1">
         <div class="row">
-            <!-- Chap (4) -->
-            <div class="col-3 bg-light text-white p-3" style="height: 100vh">
-                <a href="{% url 'create' %}" class="fw-bold"> + Kitob qo'shish</a>
-                <br>
-                <a href="{% url 'logout' %}" class="fw-bold">Logout</a>
+            <div class="col-2 bg-light text-white p-3 d-flex justify-content-center border border-dark"
+                 style="height: 100vh">
+                <a href="#" class="navbar-brand" style="color: black;">Profile sections</a>
+                <p class="navbar-brand" style="color: black;">Profile sections</p>
+
+
             </div>
 
-            <div class="col-9 bg-light">
+            <div class="col-10 bg-light border border-dark">
 
                 <div class="row">
                     {% for book in books %}
-                        <div class="col-3">
+                        <div class="col-3 mt-2">
                             <div class="card h-100 w-100 card">
                                 <img src="{{ book.photo.url }}" class="img-format" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ book.title }}</h5>
+                                    <h5 class="card-title">{{ book.title|truncatechars:17 }}</h5>
                                     <p class="card-text">{{ book.description|truncatechars:44 }}</p>
                                     <a href="{% url 'detail' book.id %}" class="btn btn-outline-success mb-1">View</a>
-                                    <a href="{% url 'update' book.id %}" class="btn btn-outline-warning mb-1">Edit</a>
-                                    <a href="#" class="btn btn-primary">25 $</a>
+                                    <a href="#" class="btn btn-outline-warning mb-1">Edit</a>
+                                    <a href="#" class="btn btn-primary">25$</a>
                                 </div>
                             </div>
                         </div>
@@ -44,5 +45,5 @@
         </div>
 
 
-
+    </div>
 {% endblock %}

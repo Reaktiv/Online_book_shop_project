@@ -1,11 +1,12 @@
-.img-format{
+.img-format {
     width: 100%;
     height: 250px;
     object-fit: cover;
     object-position: center;
     border-radius: 20px;
 }
+
 .card {
     border-radius: 20px;
-    overflow: hidden; /* ichidagi rasm radiusdan chiqib ketmasin deb */
+    overflow: hidden;
 }
