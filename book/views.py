@@ -89,7 +89,6 @@ def update(request, book_id):
     context = {
         'form': form,
         'book': book,
-        'book_id': book_id
     }
     return render(request, 'book/update.html', context=context)
 

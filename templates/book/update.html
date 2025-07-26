@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
-
 {% load crispy_forms_tags %}
+
 
 {% block title %}
     Update
@@ -15,6 +15,11 @@
         </div>
         <div class="card-body">
 
+            <form action="{% url 'update' book.id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                 {{ form|crispy }}
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
         </div>
     </div>
 {% endblock %}
