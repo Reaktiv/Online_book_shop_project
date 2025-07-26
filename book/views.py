@@ -47,7 +47,7 @@ def home(request):
 
 
 def create(request):
-    if not request.user.has_perm('blog.add_book'):
+    if not request.user.has_perm('book.add_book'):
         return HttpResponse('Sizni blog qo`shishga huquqingiz yo`q!')
     if request.method == 'POST':
         form = BookForm(request.POST, request.FILES)

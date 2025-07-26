@@ -24,7 +24,8 @@
 <body class="d-flex flex-column h-100 mt-3">
 <div class="container">
     {% if user.is_authenticated %}
-        <nav class="navbar navbar-light bg-light border border-dark" style="height: 12vh">
+        <nav class="navbar navbar-light"
+             style="height: 12vh; background-color: darkgrey; border-radius: 20px;">
             <div class="container">
                 <img src="/media/photos/sayt_logo.png" alt="Sayt logosi" class="rounded-circle"
                      style="width: 70px; height: 70px; object-fit: cover;">
@@ -46,7 +47,7 @@
 
     {% endblock %}
 
-    <footer class="footer mt-auto py-3 bg-body-tertiary">
+    <footer class="footer mt-1 py-3 bg-body-tertiary" style="border-radius: 20px;">
         <div class="container"><span class="text-body-secondary">Place sticky footer content here.</span></div>
     </footer>
 
