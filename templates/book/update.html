@@ -9,6 +9,7 @@
 
 
 {% block content %}
+    {% include 'book/delete_confirm.html' %}
     <div class="card">
         <div class="card-header">
             <span class="fs-3 text-pr">Update Book</span>
@@ -17,9 +18,14 @@
 
             <form action="{% url 'update' book.id %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                 {{ form|crispy }}
+                {{ form|crispy }}
                 <button type="submit" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-outline-danger float-end" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop">
+                    <i class="bi bi-trash3"></i> Delete
+                </button>
             </form>
+
         </div>
     </div>
 {% endblock %}

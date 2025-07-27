@@ -26,20 +26,37 @@
     {% if user.is_authenticated %}
         <nav class="navbar navbar-light"
              style="height: 12vh; background-color: darkgrey; border-radius: 20px;">
-            <div class="container">
-                <img src="/media/photos/sayt_logo.png" alt="Sayt logosi" class="rounded-circle"
-                     style="width: 70px; height: 70px; object-fit: cover;">
-                <a class="navbar-brand">Navbar</a>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-                <form method="POST" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-outline-warning">Logout</button>
-                </form>
+            <div class="container d-flex align-items-center justify-content-between">
+
+                <!-- Chap taraf: Rasm va Yozuvlar -->
+                <div class="d-flex align-items-center">
+                    <!-- Rasm: Chap tomonda -->
+                    <img src="/media/photos/sayt_logo.png" alt="Sayt logosi" class="rounded-circle"
+                         style="width: 70px; height: 70px; object-fit: cover;">
+
+                    <!-- Yozuvlar: Rasmning o‘ngida, pastma-past -->
+                    <div class="ms-2" style="font-size: 16px; line-height: 1.2;">
+                        <div>Online</div>
+                        <div>Book</div>
+                        <div>Shop</div>
+                    </div>
+                </div>
+
+                <!-- O‘ng taraf: Search va Logout -->
+                <div class="d-flex align-items-center">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                    &nbsp;&nbsp;
+                    <form method="POST" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-warning">Logout</button>
+                    </form>
+                </div>
             </div>
         </nav>
+
     {% else %}
         <a href="{% url 'login' %}"></a>
     {% endif %}

@@ -1,10 +1,4 @@
-{% extends 'base.html' %}
 
-{% block title %}
-	Delete
-{% endblock %}
-
-{% block content %}
 	<!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -21,12 +15,12 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <a href="{% url 'delete' blog.id %}" type="button" class="btn btn-danger">Yes</a>
+                <a href="{% url 'delete' book.id %}" type="button" class="btn btn-danger">Yes</a>
             </div>
         </div>
     </div>
 </div>
-{% endblock %}
+
 
 
 
