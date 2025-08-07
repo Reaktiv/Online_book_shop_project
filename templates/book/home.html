@@ -13,46 +13,23 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container mt-1">
+    <div class="col-10" style="background-color:  whitesmoke; border-radius: 20px;">
+
         <div class="row">
-            <div class="col-2 text-white p-3 d-flex justify-content-center"
-                 style="height: auto; background-color: darkgrey; border-radius: 20px;">
-                <ul style="list-style: none">
-                    <li>
-                        <a href="#" class="navbar-brand" style="color: black"><i class="bi bi-person"></i> My profile</a>
-                    </li>
-                    <li>
-                        <a href="#" class="navbar-brand" style="color: black"><i class="bi bi-envelope-at"></i> Send Mail</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'create' %}" class="navbar-brand" style="color: black;"><i class="bi bi-plus-square"></i> Kitob qo'shish</a>
-                    </li>
-
-                </ul>
-
-            </div>
-
-            <div class="col-10" style="background-color:  whitesmoke; border-radius: 20px;">
-
-                <div class="row">
-                    {% for book in books %}
-                        <div class="col-3 mt-2">
-                            <div class="card h-100 w-100 card" style="border-color: darkgrey; border-width: 5px">
-                                <img src="{{ book.photo.url }}" class="img-format" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ book.title|truncatechars:17 }}</h5>
-                                    <p class="card-text">{{ book.description|truncatechars:44 }}</p>
-                                    <a href="{% url 'detail' book.id %}" class="btn btn-outline-success mb-1">View</a>
-                                    <a href="{% url 'update' book.id %}" class="btn btn-outline-warning mb-1">Edit</a>
-                                    <a href="#" class="btn btn-primary">25$</a>
-                                </div>
-                            </div>
+            {% for book in books %}
+                <div class="col-3 mt-2">
+                    <div class="card h-100 w-100 card" style="border-color: darkgrey; border-width: 5px">
+                        <img src="{{ book.photo.url }}" class="img-format" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ book.title|truncatechars:17 }}</h5>
+                            <p class="card-text">{{ book.description|truncatechars:44 }}</p>
+                            <a href="{% url 'detail' book.id %}" class="btn btn-outline-success">View</a>
+                            <a href="{% url 'update' book.id %}" class="btn btn-outline-warning">Edit</a>
+                            <a href="#" class="btn btn-primary">25$</a>
                         </div>
-                    {% endfor %}
+                    </div>
                 </div>
-            </div>
+            {% endfor %}
         </div>
-
-
     </div>
 {% endblock %}

@@ -4,6 +4,8 @@ from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
+
+import book
 from book.models import Book
 from book.forms import BookForm
 from django.contrib.auth.models import Permission
@@ -42,10 +44,6 @@ def home(request):
 
     return render(request, 'book/home.html', context=context)
 
-
-
-
-
 def create(request):
     if not request.user.has_perm('book.add_book'):
         return HttpResponse('Sizni blog qo`shishga huquqingiz yo`q!')
@@ -53,9 +51,7 @@ def create(request):
         form = BookForm(request.POST, request.FILES)
         if form.is_valid():
             book = form.save(commit=False)
-            book.author = request.user
             book.save()
-
             return redirect('home')
     else:
         form = BookForm()
@@ -67,7 +63,6 @@ def create(request):
 
 def detail(request, book_id):
     book = get_object_or_404(Book, id=book_id)
-
     context = {
         'book': book,
 
