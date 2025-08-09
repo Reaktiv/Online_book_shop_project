@@ -1,11 +1,8 @@
-from django.contrib import messages
+
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
-
-import book
 from book.models import Book
 from book.forms import BookForm
 from django.contrib.auth.models import Permission
@@ -51,6 +48,7 @@ def create(request):
         form = BookForm(request.POST, request.FILES)
         if form.is_valid():
             book = form.save(commit=False)
+            book.added_by = request.user
             book.save()
             return redirect('home')
     else:
@@ -73,7 +71,7 @@ def detail(request, book_id):
 
 
 def update(request, book_id):
-    book = get_object_or_404(Book, id=book_id)
+    book = get_object_or_404(Book, id=book_id, added_by=request.user)
     if request.method == 'POST':
         form = BookForm(request.POST, request.FILES, instance=book)
         if form.is_valid():
@@ -89,7 +87,7 @@ def update(request, book_id):
 
 
 def delete(request, book_id):
-    book = get_object_or_404(Book, id=book_id)
+    book = get_object_or_404(Book, id=book_id, added_by=request.user)
     book.delete()
     return redirect('home')
 

@@ -24,7 +24,9 @@
                             <h5 class="card-title">{{ book.title|truncatechars:17 }}</h5>
                             <p class="card-text">{{ book.description|truncatechars:44 }}</p>
                             <a href="{% url 'detail' book.id %}" class="btn btn-outline-success">View</a>
-                            <a href="{% url 'update' book.id %}" class="btn btn-outline-warning">Edit</a>
+                            {% if user == book.added_by %}
+                                <a href="{% url 'update' book.id %}" class="btn btn-outline-warning">Edit</a>
+                            {% endif %}
                             <a href="#" class="btn btn-primary">25$</a>
                         </div>
                     </div>

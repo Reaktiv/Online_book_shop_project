@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Change Profile
+{% endblock %}
+
+{% block content %}
+
+    <div class="col-10 card">
+        <div class="card-header" style="border-radius: 20px;">
+            <p class="fs-3 text-primary">Change Profile</p>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{% url 'change_profile' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ u_form|crispy }}
+                {{ p_form|crispy }}
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

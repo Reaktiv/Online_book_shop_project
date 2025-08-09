@@ -8,5 +8,5 @@ class BookForm(ModelForm):
 
     class Meta:
         model = Book
-        fields = ('added_by',   'title', 'author', 'description',  'photo', 'published')
-
+        fields = '__all__'
+        exclude = ('added_by', )
