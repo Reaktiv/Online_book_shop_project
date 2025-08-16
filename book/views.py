@@ -1,12 +1,13 @@
 
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
 from book.models import Book
 from book.forms import BookForm
 from django.contrib.auth.models import Permission
-
+from django.contrib import messages
 
 @login_required
 def home(request):
@@ -41,15 +42,32 @@ def home(request):
 
     return render(request, 'book/home.html', context=context)
 
+def unpublished_books(request):
+    if request.user.is_superuser:
+        book = Book.objects.filter(published=False)
+    else:
+        book = Book.objects.filter(added_by=request.user ,published=False)
+    context = {
+        'books': book
+    }
+    return render(request, 'book/unpublished_books.html', context=context)
+
+def my_books(request):
+    book = Book.objects.filter(added_by=request.user, published=True)
+    context = {
+        'books': book
+    }
+    return render(request, 'book/my_books.html', context=context)
+
+
 def create(request):
-    if not request.user.has_perm('book.add_book'):
-        return HttpResponse('Sizni blog qo`shishga huquqingiz yo`q!')
     if request.method == 'POST':
         form = BookForm(request.POST, request.FILES)
         if form.is_valid():
             book = form.save(commit=False)
             book.added_by = request.user
             book.save()
+            messages.success(request, f"{book.title} kitobi muvaffaqiyatli yaratildi!")
             return redirect('home')
     else:
         form = BookForm()
@@ -75,7 +93,8 @@ def update(request, book_id):
     if request.method == 'POST':
         form = BookForm(request.POST, request.FILES, instance=book)
         if form.is_valid():
-            form.save()
+            b_k = form.save()
+            messages.success(request, f"{b_k.title} ning malumotlari muvaffaqiyatli o'zgartirildi!")
             return redirect('home')
     else:
         form = BookForm(instance=book)
@@ -89,6 +108,8 @@ def update(request, book_id):
 def delete(request, book_id):
     book = get_object_or_404(Book, id=book_id, added_by=request.user)
     book.delete()
+    messages.warning(request, f"{book.title} kitobi muvaffaqiyatli o'chirildi!")
     return redirect('home')
+
 
 

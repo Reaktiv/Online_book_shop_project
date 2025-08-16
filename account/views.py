@@ -1,4 +1,6 @@
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from account.forms import CustomUserCreationForm, CustomUserChangeForm, ProfileChangeForm
@@ -20,8 +22,10 @@ def register(request):
     }
     return render(request, 'account/register.html', context=context)
 
+
 def profile(request):
     return render(request, 'account/profile.html')
+
 
 def change_profile(request):
     if request.method == 'POST':
@@ -30,8 +34,9 @@ def change_profile(request):
             Profile.objects.create(user=request.user)
         profile_form = ProfileChangeForm(request.POST, request.FILES, instance=request.user.profile)
         if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
+            user = user_form.save()
             profile_form.save()
+            messages.success(request, f"{user.username} ning malumotlari muvaffaqiyatli o'zgartirildi!")
         return redirect('profile')
     else:
         user_form = CustomUserChangeForm(instance=request.user)
@@ -39,16 +44,26 @@ def change_profile(request):
             Profile.objects.create(user=request.user)
         profile_form = ProfileChangeForm(instance=request.user.profile)
     context = {
-        'u_form':user_form,
-        'p_form':profile_form,
+        'u_form': user_form,
+        'p_form': profile_form,
     }
     return render(request, 'account/change_profile.html', context=context)
 
 
-
-
-
-
-
-
-
+def test_send_email(request):
+    subject = request.POST.get('subject')
+    message = request.POST.get('message')
+    to_email = request.POST.get('email')
+    if request.method == 'POST':
+        send_mail(
+            subject,
+            message,
+            'itolmasov.olmasjon1505@gmail.com',
+            [
+                to_email,
+            ],
+            fail_silently=True
+        )
+        return redirect('send_mail_success')
+    else:
+        return render(request, 'mail/send_mail.html')

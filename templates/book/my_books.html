@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+	My Books
+{% endblock %}
+
+
+{% block content %}
+	 <div class="col-10" style="background-color:  whitesmoke; border-radius: 20px;">
+     <div class="row">
+
+            {% for book in books %}
+                <div class="col-3 mt-2">
+                    <div class="card h-100 w-100 card" style="border-color: darkgrey; border-width: 5px">
+                        <img src="{{ book.photo.url }}" class="img-format" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ book.title|truncatechars:17 }}</h5>
+                            <p class="card-text">{{ book.description|truncatechars:44 }}</p>
+                            <a href="{% url 'detail' book.id %}" class="btn btn-outline-success">View</a>
+                            {% if user == book.added_by %}
+                                <a href="{% url 'update' book.id %}" class="btn btn-outline-warning">Edit</a>
+                            {% endif %}
+                            <a href="#" class="btn btn-primary">25$</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+     </div>
+{% endblock %}

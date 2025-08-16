@@ -7,7 +7,7 @@ class Book(models.Model):
     added_by = models.ForeignKey(AUTH_USER_MODEL,on_delete=models.CASCADE, related_name='books')
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=100)
-    description = models.TextField(max_length=500)
+    description = models.TextField(max_length=1500)
     photo = models.ImageField(upload_to='book_photos/')
     created_at = models.DateTimeField(auto_now_add=True)
     published = models.BooleanField(default=True)

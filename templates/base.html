@@ -22,7 +22,9 @@
     {% endblock %}
 </head>
 <body class="d-flex flex-column h-100 mt-3">
-<div class="container">
+
+<div class="container flex-fill">
+
     {% if user.is_authenticated %}
         <nav class="navbar navbar-light"
              style="height: 12vh; background-color: darkgrey; border-radius: 20px;">
@@ -48,38 +50,76 @@
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
-                    &nbsp;&nbsp;
-                    <form method="POST" action="{% url 'logout' %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-outline-warning">Logout</button>
-                    </form>
                 </div>
             </div>
         </nav>
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert"
+                 style="border-radius: 20px;">
+                <strong>{{ message.tags }}</strong> {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
         <div class="container mt-1">
         <div class="row">
         <div class="col-2 text-white p-3 d-flex justify-content-center"
-             style="height: 100vh; background-color: darkgrey; border-radius: 20px;">
+             style="height: auto; background-color: darkgrey; border-radius: 20px;">
             <ul style="list-style: none">
-                <li>
+                <li class="mt-2">
                     <a href="{% url 'home' %}" class="navbar-brand" style="color: black"><i
-                            class="bi bi-house-heart-fill"></i> Home</a>
+                            class="bi bi-houses"></i> Home</a>
                 </li>
-                <li>
-                    <a href="{% url 'profile' %}" class="navbar-brand" style="color: black"><i class="bi bi-person"></i> My profile</a>
+                <li class="mt-2">
+                    <a href="{% url 'profile' %}" class="navbar-brand" style="color: black"><i class="bi bi-person"></i>
+                        My profile</a>
                 </li>
-                <li>
-                    <a href="#" class="navbar-brand" style="color: black"><i class="bi bi-envelope-at"></i> Send Mail</a>
+                <li class="mt-2">
+                    <a href="{% url 'my_books' %}" class="navbar-brand" style="color: black"><i class="bi bi-book"></i>
+                        My Books</a>
                 </li>
-                <li>
+                <li class="mt-2">
+                    <a href="{% url 'unpublished_books' %}" class="navbar-brand" style="color: black"><i
+                            class="bi bi-bookmark-x"></i>
+                        Unpublished Books</a>
+                </li>
+
+                <li class="mt-2">
+                    <a href="#" class="navbar-brand" style="color: black"><i class="bi bi-chat-text"></i>
+                        Messages</a>
+                </li>
+
+                <li class="mt-2">
+                    <a href="{% url 'test_email' %}" class="navbar-brand" style="color: black"><i
+                            class="bi bi-envelope-at"></i> Send
+                        Mail</a>
+                </li>
+                <li class="mt-2">
                     <a href="{% url 'create' %}" class="navbar-brand" style="color: black;"><i
                             class="bi bi-plus-square"></i> Add Book</a>
                 </li>
+                <li class="mt-2">
+                    <a href="#" class="navbar-brand" style="color: black;"><i class="bi bi-gear"></i>
+                        Settings</a>
+                </li>
+                <li class="mt-2">
+                    <a href="#" class="navbar-brand" style="color: black;"><i class="bi bi-moon-stars"></i>
+                        Night Mode</a>
+                </li>
+                <li class="mt-2">
+                    <form action="{% url 'logout' %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger"
+                                style="color: black; text-decoration: none;">
+                            <i class="bi bi-box-arrow-left"></i> Logout
+                        </button>
+                    </form>
+                </li>
+
 
             </ul>
 
-        </div>
 
+        </div>
     {% else %}
         <a href="{% url 'login' %}"></a>
     {% endif %}
@@ -87,15 +127,20 @@
     {% block content %}
 
     {% endblock %}
+<footer class="footer mt-auto py-3 bg-body-tertiary" style="border-radius: 20px;">
+    <div class="container">
+        <span class="text-body-secondary">
+            Sizning footeringiz uchun kontent.
+        </span>
+    </div>
+</footer>
+
     </div>
 
 
     </div>
 
 
-    <footer class="footer mt-1 py-3 bg-body-tertiary" style="border-radius: 20px;">
-        <div class="container"><span class="text-body-secondary">Place sticky footer content here.</span></div>
-    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
             integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

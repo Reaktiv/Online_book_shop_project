@@ -12,26 +12,27 @@
                 <div class="row">
                     <div class="">
                         <div class="card mb-4">
-                            <div class="card-body text-center">
-                                {% if user.profile.image %}
-                                <img src="{{ user.profile.image.url }}"
-                                     alt="avatar"
-                                      class="rounded-circle" style="height: 170px; width: 150px">
-                                {% else %}
-                                   <img src="/media/profile_img/default_profile_image.jpg"
-                                     alt="avatar"
-                                     class="rounded-circle" style="height: 170px; width: 150px">
-                                {% endif %}
-                                <h5 class="my-3">{{ user.username }}</h5>
-                                <div class="d-flex justify-content-center mb-2">
-                                    <button type="button" data-mdb-button-init data-mdb-ripple-init
-                                            class="btn btn-primary">Follow
-                                    </button>
-                                    <a href="#" type="button" data-mdb-button-init data-mdb-ripple-init
-                                            class="btn btn-outline-primary ms-1">Message
-                                    </a>
+                            <div class="d-flex justify-content-center">
+                                <div class="text-center">
+                                    <div style="padding: 10px; border: 10px solid grey; display: inline-block; border-radius: 20px;"
+                                         class="m-2">
+                                        {% if user.profile.image %}
+                                            <img src="{{ user.profile.image.url }}"
+                                                 alt="avatar"
+                                                 class="rounded-circle"
+                                                 style="height: 170px; width: 150px;">
+                                        {% else %}
+                                            <img src="/media/profile_img/default_profile_image.jpg"
+                                                 alt="avatar"
+                                                 class="rounded-circle"
+                                                 style="height: 170px; width: 150px;">
+                                        {% endif %}
+                                    </div>
+                                    <h2 class="mt-2">{{ user.username }}</h2>
                                 </div>
+
                             </div>
+
                         </div>
                     </div>
                     <div class="">
@@ -74,7 +75,8 @@
                                 </div>
                                 <hr>
                                 <div class="text-center">
-                                    <a href="{% url 'change_profile' %}" class="btn btn-outline-secondary" style="">Edit my account</a>
+                                    <a href="{% url 'change_profile' %}" class="btn btn-outline-secondary" style="">Edit
+                                        my account</a>
                                 </div>
 
 
