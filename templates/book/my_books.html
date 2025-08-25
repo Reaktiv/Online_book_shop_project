@@ -2,13 +2,24 @@
 
 
 {% block title %}
-	My Books
+    My Books
 {% endblock %}
 
-
+{% block search %}
+    <div class="d-flex align-items-center justify-content-between">
+        <button class="btn btn-secondary m-2">{{ books.count }} books</button>
+        <form method="POST" class="d-flex" role="search">
+            {% csrf_token %}
+            <input name="search_my_published_book" class="form-control me-2" type="search"
+                   placeholder="My Published Books"
+                   aria-label="Search"/>
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+{% endblock %}
 {% block content %}
-	 <div class="col-10" style="background-color:  whitesmoke; border-radius: 20px;">
-     <div class="row">
+    <div class="col-10" style="background-color:  whitesmoke; border-radius: 20px;">
+        <div class="row">
 
             {% for book in books %}
                 <div class="col-3 mt-2">
@@ -27,5 +38,5 @@
                 </div>
             {% endfor %}
         </div>
-     </div>
+    </div>
 {% endblock %}

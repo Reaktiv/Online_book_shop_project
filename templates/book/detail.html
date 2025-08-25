@@ -8,25 +8,27 @@
 {% endblock %}
 
 {% block content %}
-    <div class="col-10" style="background-color:  whitesmoke; border-radius: 20px;">
-        <h3>{{ blog.title }}</h3>
-        <span class="fw-bold"><i class="bi bi-person"></i> {{ book.added_by }} </span>
+    <div class="col-10" style=" background-color: lightgray; border-radius: 20px;">
+        <h3>{{ books.title }}</h3>
+        <span class="fw-bold"><i class="bi bi-person"></i> {{ books.added_by }} </span>
 
-        <div class="card p-2 d-flex flex-column" style="border-width: 5px; border-radius: 20px;">
+        <div class="card p-2 d-flex flex-column"
+             style="border-radius: 20px;border: 5px solid black; background-color: darkgrey;">
+            <p class="fw-bold">Book description:</p>
             <p>
-                {{ book.description }}
+                {{ books.description|safe }}
             </p>
 
             <div class="mt-auto text-end">
-                <p class="fw-bold mb-0">{{ book.description|wordcount }} words</p>
+                <p class="fw-bold mb-0">{{ books.description|wordcount }} words</p>
             </div>
         </div>
 
-        <img src="{{ book.photo.url }}" alt="" class="mt-2" style="border-radius: 20px; height: 40vh;">
-        <h6 class="fw-bold mt-2"><i class="bi bi-pencil-fill"></i> Author: {{ book.author }}</h6>
-        <h6 class="fw-bold"><i class="bi bi-book-half"></i> Book name: {{ book.title }}</h6>
+        <img src="{{ books.photo.url }}" alt="" class="mt-2" style="border-radius: 20px; height: 40vh;">
+        <h6 class="fw-bold mt-2"><i class="bi bi-pencil-fill"></i> Author: {{ books.author }}</h6>
+        <h6 class="fw-bold"><i class="bi bi-book-half"></i> Book name: {{ books.title }}</h6>
 
-        <p class="fw-bold my-2"><i class="bi bi-calendar2-date"></i> {{ book.created_at|date:"D d M Y ⏰ f A" }} </p>
+        <p class="fw-bold my-2"><i class="bi bi-calendar2-date"></i> {{ books.created_at|date:"D d M Y ⏰ f A" }} </p>
 
     </div>
 

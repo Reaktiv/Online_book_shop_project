@@ -5,11 +5,15 @@
 {% endblock %}
 
 {% block search %}
-    <form method="GET" class="d-flex" role="search">
-        <input name="search_published_blog" class="form-control me-2" type="search" placeholder="Published blogs"
-               aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
+    <div class="d-flex align-items-center justify-content-between">
+        <button class="btn btn-secondary m-2">{{ books.count }} books</button>
+        <form method="POST" class="d-flex" role="search">
+            {% csrf_token %}
+            <input name="search_published_book" class="form-control me-2" type="search" placeholder="Published books"
+                   aria-label="Search"/>
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
 {% endblock %}
 
 {% block content %}
@@ -57,7 +61,7 @@
                         <img src="{{ book.photo.url }}" class="img-format" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ book.title|truncatechars:17 }}</h5>
-                            <p class="card-text">{{ book.description|truncatechars:44 }}</p>
+                            <p class="card-text">{{ book.description|truncatechars:40 }}</p>
                             <a href="{% url 'detail' book.id %}" class="btn btn-outline-success">View</a>
                             {% if user == book.added_by %}
                                 <a href="{% url 'update' book.id %}" class="btn btn-outline-warning">Edit</a>
