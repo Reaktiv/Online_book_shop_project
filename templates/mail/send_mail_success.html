@@ -9,15 +9,21 @@
 {% block content %}
     <div class="col-10 card">
         <div class="card-header" style="border-radius: 20px;">
-            <h3 class="text-success text-center">Emailingiz muvaffaqiyatli yuborildi!</h3>
+            <h3 class="text-success text-center">Emailga muvaffaqiyatli yuborildi!</h3>
         </div>
         <div class="card-body mt-5">
             <p class="text-center mb-4">Yana email yuborishni istaysizmi?</p>
             <div class="d-flex justify-content-center">
-                <a href="{% url 'test_email' %}" class="btn btn-success px-4 py-2" style="border-radius: 30px;">
+                <a href="{% url 'test_email' %}" class="btn btn-success px-4 py-2" style="border-radius: 20px;">
                     <i class="bi bi-envelope-fill me-2"></i> Ha, yana yuboraman
                 </a>
             </div>
+            <div class="d-flex justify-content-center mt-3">
+                <a href="{% url 'home' %}" class="btn btn-danger px-4 py-2" style="border-radius: 20px;">
+                    <i class="bi bi-x-circle me-2"></i> Yo'q, xohlamayman
+                </a>
+            </div>
+
         </div>
 
     </div>
