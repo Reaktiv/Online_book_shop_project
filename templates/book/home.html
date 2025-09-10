@@ -67,7 +67,7 @@
                                 <a href="{% url 'update' book.id %}" class="btn btn-outline-warning">Edit</a>
                             {% endif %}
                             <a href="#" class="btn btn-primary">{{ book.price }} $</a>
-                            <p class="fw-bold"> {{ book.created_at|timesince }} ago</p>
+                            <p class="fw-bold bottom"> {{ book.created_at|timesince }} ago</p>
                         </div>
                     </div>
                 </div>
