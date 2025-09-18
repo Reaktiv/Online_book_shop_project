@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Basket view
+{% endblock %}
+
+{% block content %}
+
+    <div class="col-10" style="background-color: whitesmoke; border-radius: 20px;">
+        <h1 style="text-align: center; color: black;" class="fw-bold m-3">Cart</h1>
+        <hr>
+        {% if basket_items %}
+            {% for item in basket_items %}
+
+                <div class="row mt-2">
+                    <div class="col-2" style="border-radius: 10px;">
+                        <img src="{{ item.book.photo.url }}" class="img-format" alt="">
+                    </div>
+                    <div class="col-10" style="border-radius: 10px;">
+                        <h5 class="fw-bold">{{ item.book.title|truncatechars:70 }}</h5>
+                        <span>{{ item.book.author }}</span>
+                        <h6 class="fw-bold mt-3">Book price: {{ item.book.price }} $</h6>
+                        <div class="d-inline-flex align-items-center gap-2">
+                            <span class="fw-bold mt-3">Quantity:</span>
+
+                            <form action="{% url 'basket_add' book_id=item.book.id %}" method="post"
+                                  style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm btn-outline-success">
+                                    <i class="bi bi-patch-plus"></i>
+                                </button>
+                            </form>
+
+                            <span class="fw-bold">{{ item.quantity }}</span>
+
+                            <a href="{% url 'basket_remove' book_id=item.book.id %}"
+                               class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-patch-minus"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <hr>
+            {% endfor %}
+            <div class="d-flex justify-content-between align-items-center m-3">
+                <a href="{% url 'payment' %}" class="btn btn-info">Pay</a>
+                <a class="btn btn-dark" style="color: coral;">Total price: {{ total_price }} $</a>
+            </div>
+        {% else %}
+            <div style="color: darkgrey; height: auto">
+                <h1 style="text-align: center;margin-top: 150px;">Your cart is empty.</h1>
+            </div>
+
+
+        {% endif %}
+    </div>
+
+
+
+{% endblock %}
+
+
+
+
