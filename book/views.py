@@ -161,7 +161,7 @@ def basket_add(request, book_id):
             request.session.modified = True
         except Book.DoesNotExist:
             pass
-        return redirect('basket_view')
+        return redirect('home')
     return HttpResponseBadRequest("Invalid request method")
 
 

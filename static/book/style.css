@@ -22,3 +22,18 @@
     background-color: white;
     color: black;
 }
+/* Animatsiya uchun */
+.dropdown-animate {
+  transform-origin: top;
+  transform: scaleY(0);
+  opacity: 0;
+  transition: all 0.25s ease-in-out;
+  display: block;   /* muhim, Bootstrap display none qilib qo‘ymasligi uchun */
+  visibility: hidden;
+}
+
+.dropdown.show .dropdown-animate {
+  transform: scaleY(1);
+  opacity: 1;
+  visibility: visible;
+}
