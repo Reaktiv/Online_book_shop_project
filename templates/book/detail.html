@@ -10,7 +10,9 @@
 {% block content %}
     <div class="col-10" style="background-color: lightgray; border-radius: 20px;">
         <span class="fw-bold"><i class="bi bi-person"></i> {{ books.added_by }} </span>
-    
+        |
+        <span class="fw-bold"><i class="bi bi-hash"></i>{{ books.category }} </span>
+
         <div class="card p-2 d-flex flex-column"
              style="border-radius: 20px;border: 5px solid black; background-color: darkgrey;">
             <p class="fw-bold">Book description:</p>

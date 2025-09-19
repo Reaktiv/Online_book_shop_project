@@ -1,3 +1,5 @@
+from re import search
+
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.http import HttpResponse, HttpResponseBadRequest
@@ -183,3 +185,15 @@ def basket_remove(request, book_id):
 
 def payment(request):
     return render(request, 'book/payment.html')
+
+def by_category(request, category_name):
+    books = Book.objects.filter(published=True, category=category_name)
+    search_book = request.POST.get('category')
+    if search_book:
+        books = Book.objects.filter(Q(title__icontains=search_book)|Q(description__icontains=search_book), category=category_name, published=True)
+
+    context = {
+        'books': books,
+        'category': category_name
+    }
+    return render(request, 'book/by_category.html', context=context)

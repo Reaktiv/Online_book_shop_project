@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
-{% load static %}
+
 {% block title %}
-    Home
+	By category
 {% endblock %}
 
 {% block search %}
@@ -12,17 +12,15 @@
                 Categories
             </button>
             <ul class="dropdown-menu dropdown-animate" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="{% url 'by_category' 'Scientific' %}">Scientific</a></li>
-                <li><a class="dropdown-item" href="{% url 'by_category' 'Religious' %}">Religious</a></li>
-                <li><a class="dropdown-item" href="{% url 'by_category' 'Adventure' %}">Adventure</a></li>
-                <li><a class="dropdown-item" href="{% url 'by_category' 'Classic' %}">Classic</a></li>
-                <li><a class="dropdown-item" href="{% url 'by_category' 'Philosophy' %}">Philosophy</a></li>
-                <li><a class="dropdown-item" href="{% url 'by_category' 'Fantastic' %}">Fantastic</a></li>
-                <li><a class="dropdown-item" href="{% url 'by_category' 'Historical' %}">Historical</a></li>
                 <li><a class="dropdown-item" href="{% url 'by_category' 'Tale' %}">Tale</a></li>
+                <li><a class="dropdown-item" href="{% url 'by_category' 'Philosophy' %}">Philosophy</a></li>
+                <li><a class="dropdown-item" href="{% url 'by_category' 'Historical' %}">Historical</a></li>
+                <li><a class="dropdown-item" href="{% url 'by_category' 'Classic' %}">Classic</a></li>
                 <li><a class="dropdown-item" href="{% url 'by_category' 'Romance' %}">Romance</a></li>
                 <li><a class="dropdown-item" href="{% url 'by_category' 'Art' %}">Art</a></li>
                 <li><a class="dropdown-item" href="{% url 'by_category' 'Cooking_Food' %}">Cooking_Food</a></li>
+                <li><a class="dropdown-item" href="{% url 'by_category' 'Fantastic' %}">Fantastic</a></li>
+                <li><a class="dropdown-item" href="{% url 'by_category' 'Religious' %}">Religious</a></li>
             </ul>
         </div>
 
@@ -38,43 +36,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="col-10" style="background-color:  whitesmoke; border-radius: 20px;">
-        <div class="row">
-            <div id="carouselExampleDark" class="carousel carousel-dark slide">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
-                            aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-                            aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active" data-bs-interval="10000">
-                        <img src="/media/carousel/17newbooks.png" alt="..." class="mt-1"
-                             style="border-radius: 20px; width: 1055px; height: 400px">
-                    </div>
-                    <div class="carousel-item" data-bs-interval="2000">
-                        <img src="/media/carousel/goodreads.png" alt="..." class="mt-1"
-                             style="border-radius: 20px; width: 1055px; height: 400px">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/media/carousel/kuang.png" alt="..." class="mt-1"
-                             style="border-radius: 20px; width: 1055px; height: 400px">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
-                        data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
-                        data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
+<div class="col-10" style="background-color:  whitesmoke; border-radius: 20px;">
         <div class="row">
             {% for book in books %}
                 <div class="col-3 mt-2">
