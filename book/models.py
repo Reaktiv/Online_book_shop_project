@@ -11,7 +11,7 @@ class Book(models.Model):
         'Classic': "Classic",
         'Romance': "Romance",
         'Art': "Art",
-        'Cooking/Food': "Cooking/Food",
+        'Cooking_Food': "Cooking_Food",
         'Fantastic': "Fantastic",
         'Religious': "Religious",
         'Adventure': "Adventure",

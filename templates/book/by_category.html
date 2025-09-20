@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 
 {% block title %}
-	By category
+    By category
 {% endblock %}
 
 {% block search %}
@@ -12,15 +12,17 @@
                 Categories
             </button>
             <ul class="dropdown-menu dropdown-animate" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="{% url 'by_category' 'Tale' %}">Tale</a></li>
-                <li><a class="dropdown-item" href="{% url 'by_category' 'Philosophy' %}">Philosophy</a></li>
-                <li><a class="dropdown-item" href="{% url 'by_category' 'Historical' %}">Historical</a></li>
+                <li><a class="dropdown-item" href="{% url 'by_category' 'Scientific' %}">Scientific</a></li>
+                <li><a class="dropdown-item" href="{% url 'by_category' 'Religious' %}">Religious</a></li>
+                <li><a class="dropdown-item" href="{% url 'by_category' 'Adventure' %}">Adventure</a></li>
                 <li><a class="dropdown-item" href="{% url 'by_category' 'Classic' %}">Classic</a></li>
+                <li><a class="dropdown-item" href="{% url 'by_category' 'Philosophy' %}">Philosophy</a></li>
+                <li><a class="dropdown-item" href="{% url 'by_category' 'Fantastic' %}">Fantastic</a></li>
+                <li><a class="dropdown-item" href="{% url 'by_category' 'Historical' %}">Historical</a></li>
+                <li><a class="dropdown-item" href="{% url 'by_category' 'Tale' %}">Tale</a></li>
                 <li><a class="dropdown-item" href="{% url 'by_category' 'Romance' %}">Romance</a></li>
                 <li><a class="dropdown-item" href="{% url 'by_category' 'Art' %}">Art</a></li>
                 <li><a class="dropdown-item" href="{% url 'by_category' 'Cooking_Food' %}">Cooking_Food</a></li>
-                <li><a class="dropdown-item" href="{% url 'by_category' 'Fantastic' %}">Fantastic</a></li>
-                <li><a class="dropdown-item" href="{% url 'by_category' 'Religious' %}">Religious</a></li>
             </ul>
         </div>
 
@@ -36,8 +38,10 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-10" style="background-color:  whitesmoke; border-radius: 20px;">
+    <div class="col-10" style="background-color:  whitesmoke; border-radius: 20px;">
         <div class="row">
+            <h3 style="text-align: center; margin: 15px; font-weight: bold">{{ category }}</h3>
+            <hr>
             {% for book in books %}
                 <div class="col-3 mt-2">
                     <div class="card h-100 w-100 card" style="border-color: darkgrey; border-width: 5px">
