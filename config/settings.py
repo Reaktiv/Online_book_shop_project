@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$hm6n8aa9u_2u67kcy@)1whpx5z05=kyh**p064n)4-i7_ous0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['Reaktiv.pythonanywhere.com']
 
 # Application definition
 
