@@ -6,12 +6,12 @@
 
 {% block search %}
     <div class="d-flex align-items-center justify-content-between">
-        <div class="btn-group m-2">
-            <button class="btn btn-outline-warning dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-bs-toggle="dropdown" aria-expanded="false">
+         <div class="btn-group m-3">
+            <button type="button" class="btn btn-outline-warning dropdown-toggle" data-bs-toggle="dropdown"
+                    aria-expanded="false">
                 Categories
             </button>
-            <ul class="dropdown-menu dropdown-animate" aria-labelledby="dropdownMenuButton">
+            <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{% url 'by_category' 'Scientific' %}">Scientific</a></li>
                 <li><a class="dropdown-item" href="{% url 'by_category' 'Religious' %}">Religious</a></li>
                 <li><a class="dropdown-item" href="{% url 'by_category' 'Adventure' %}">Adventure</a></li>
